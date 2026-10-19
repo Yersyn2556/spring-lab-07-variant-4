@@ -1,0 +1,44 @@
+### List books
+GET http://localhost:8081/api/books
+
+### Find existing
+GET http://localhost:8081/api/books/1
+
+### Missing book: 404
+GET http://localhost:8081/api/books/999
+
+### Create: 201 and Location
+POST http://localhost:8081/api/books
+Content-Type: application/json
+
+{"title":"REST API Essentials","author":"Alex Brown","year":2024,"genre":"PROGRAMMING","available":true}
+
+### Duplicate: 409 (run after POST)
+POST http://localhost:8081/api/books
+Content-Type: application/json
+
+{"title":"REST API Essentials","author":"Alex Brown","year":2024,"genre":"PROGRAMMING","available":true}
+
+### Invalid request: 400
+POST http://localhost:8081/api/books
+Content-Type: application/json
+
+{"title":"","author":"Alex Brown","year":2024,"genre":"PROGRAMMING"}
+
+### Full update: 200
+PUT http://localhost:8081/api/books/1
+Content-Type: application/json
+
+{"title":"Clean Code Updated","author":"Robert Martin","year":2008,"genre":"PROGRAMMING","available":true}
+
+### Delete: 204, second call: 404
+DELETE http://localhost:8081/api/books/3
+
+### VARIANT 4: Nested resource - 200 with two review DTOs
+GET http://localhost:8081/api/books/1/reviews
+
+### VARIANT 4: Existing book without reviews - 200 with []
+GET http://localhost:8081/api/books/3/reviews
+
+### VARIANT 4: Missing book - 404 with application/problem+json
+GET http://localhost:8081/api/books/999/reviews

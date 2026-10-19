@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Options</title>
+</head>
+<body>
+<h1>Выберите варианты</h1>
+
+<form th:action="@{/books/options}" th:object="${form}" method="post">
+    <label>
+        <input type="checkbox" th:field="*{options}" value="PDF">
+        PDF
+    </label>
+
+    <label>
+        <input type="checkbox" th:field="*{options}" value="PAPER">
+        Бумажная книга
+    </label>
+
+    <label>
+        <input type="checkbox" th:field="*{options}" value="AUDIO">
+        Аудиокнига
+    </label>
+
+    <p th:if="${#fields.hasErrors('options')}"
+       th:errors="*{options}"></p>
+
+    <button type="submit">Отправить</button>
+</form>
+</body>
+</html>

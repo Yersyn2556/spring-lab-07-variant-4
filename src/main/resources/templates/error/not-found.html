@@ -1,0 +1,13 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Not Found</title>
+</head>
+<body>
+<h1>404 - Book Not Found</h1>
+<p th:text="${message}">The requested book was not found.</p>
+<a th:href="@{/books}">Back to Books</a>
+</body>
+</html>

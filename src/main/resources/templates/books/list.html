@@ -1,0 +1,63 @@
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Library</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<div class="container">
+    <header class="page-header">
+        <div>
+            <h1>Books Library</h1>
+            <p>Manage your book collection</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="books-section">
+            <div class="section-header">
+                <h2>All Books</h2>
+                <span class="book-count"
+                      th:text="${books != null ? books.size() + ' books' : 'Books'}">
+                    Books
+                </span>
+            </div>
+
+            <div class="empty-state" th:if="${books == null or books.isEmpty()}">
+                <h3>No books found</h3>
+                <p>Your book collection is currently empty.</p>
+            </div>
+
+            <div class="table-wrapper" th:if="${books != null and !books.isEmpty()}">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="book : ${books}">
+                        <td th:text="${book.id}">1</td>
+                        <td th:text="${book.title}">Book title</td>
+                        <td th:text="${book.author}">Book author</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <p>Books Library &copy; 2026</p>
+    </footer>
+</div>
+
+</body>
+</html>
+```
